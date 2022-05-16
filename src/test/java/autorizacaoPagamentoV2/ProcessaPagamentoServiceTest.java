@@ -13,6 +13,7 @@ import com.ufes.autorizacaopagamento.business.GerenteGeral;
 import com.ufes.autorizacaopagamento.business.GerenteImediato;
 import com.ufes.autorizacaopagamento.business.ProcessaPagamentoService;
 import com.ufes.autorizacaopagamento.business.SuperiorHierarquico;
+import com.ufes.autorizacaopagamento.business.excecoes.SuperioresIndisponiveisException;
 import com.ufes.autorizacaopagamento.business.excecoes.TratadoresVazioException;
 
 class ProcessaPagamentoServiceTest {
@@ -124,11 +125,27 @@ class ProcessaPagamentoServiceTest {
 		ProcessaPagamentoService processaPagamentoService = new ProcessaPagamentoService();
 		// when
 		// then
-		final RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+		final TratadoresVazioException thrown = assertThrows(TratadoresVazioException.class, () -> {
 			processaPagamentoService.processaAprovacao(6000);
 		});
-		assertEquals(TratadoresVazioException.class, thrown);
+		assertEquals(thrown.getMessage(), "Falha: Nenhum superior hierarquico foi adicionado!");
 
+	}
+
+	@Test
+	void todosInativos() {
+		//given
+		ProcessaPagamentoService pagamentoServiceInativos = new ProcessaPagamentoService();
+		pagamentoServiceInativos.addTratador(new GerenteImediato( false ));
+		pagamentoServiceInativos.addTratador(new GerenteGeral( false ));
+		pagamentoServiceInativos.addTratador(new DiretorFinanceiro( false ));
+		pagamentoServiceInativos.addTratador(new DiretorGeral( false ));
+		//when
+		//then
+		final SuperioresIndisponiveisException thrown = assertThrows(SuperioresIndisponiveisException.class, () -> {
+			pagamentoServiceInativos.processaAprovacao(6000);
+		});
+		assertEquals(thrown.getMessage(), "Todos os superiores estão indisponíveis!");
 	}
 
 }
