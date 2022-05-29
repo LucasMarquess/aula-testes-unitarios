@@ -39,48 +39,48 @@ class ProcessaPagamentoServiceTest {
 
 	}
 
-	@Test
-	void testGerenteGeral() {
-		// given
-		// when
-		String result = this.processa.processaAprovacao(600);
-		// then
-		assertEquals(result,
-				"\r\nGerente imediato não pôde aprovar o pagamento solicitado\r\nGerente Geral autorizando pagamento no valor de R$ 600.0");
-
-	}
-
-	@Test
-	void testGerenteImediato() {
-		// given
-		// when
-		String result = this.processa.processaAprovacao(400);
-		// then
-		assertEquals(result, "\r\nGerente imediato autorizando pagamento no valor de R$ 400.0");
-
-	}
-
-	@Test
-	void testDiretorFinanceiro() {
-		// given
-		// when
-		String result = this.processa.processaAprovacao(1600);
-		// then
-		assertEquals(result,
-				"\r\nGerente imediato não pôde aprovar o pagamento solicitado\r\nGerente Geral não pôde aprovar o pagamento solicitado\r\nDiretor financeiro autorizando pagamento no valor de R$ 1600.0");
-
-	}
-
-	@Test
-	void testDiretorGeral() {
-		// given
-		// when
-		String result = this.processa.processaAprovacao(14999);
-		// then
-		assertEquals(result,
-				"\r\nGerente imediato não pôde aprovar o pagamento solicitado\r\nGerente Geral não pôde aprovar o pagamento solicitado\r\nDiretor financeiro não pôde aprovar o pagamento solicitado\r\nDiretor Geral autorizando pagamento no valor de R$ 14999.0");
-
-	}
+//	@Test
+//	void testGerenteGeral() {
+//		// given
+//		// when
+//		String result = this.processa.processaAprovacao(600);
+//		// then
+//		assertEquals(result,
+//				"\r\nGerente imediato não pôde aprovar o pagamento solicitado\r\nGerente Geral autorizando pagamento no valor de R$ 600.0");
+//
+//	}
+//
+//	@Test
+//	void testGerenteImediato() {
+//		// given
+//		// when
+//		String result = this.processa.processaAprovacao(400);
+//		// then
+//		assertEquals(result, "\r\nGerente imediato autorizando pagamento no valor de R$ 400.0");
+//
+//	}
+//
+//	@Test
+//	void testDiretorFinanceiro() {
+//		// given
+//		// when
+//		String result = this.processa.processaAprovacao(1600);
+//		// then
+//		assertEquals(result,
+//				"\r\nGerente imediato não pôde aprovar o pagamento solicitado\r\nGerente Geral não pôde aprovar o pagamento solicitado\r\nDiretor financeiro autorizando pagamento no valor de R$ 1600.0");
+//
+//	}
+//
+//	@Test
+//	void testDiretorGeral() {
+//		// given
+//		// when
+//		String result = this.processa.processaAprovacao(14999);
+//		// then
+//		assertEquals(result,
+//				"\r\nGerente imediato não pôde aprovar o pagamento solicitado\r\nGerente Geral não pôde aprovar o pagamento solicitado\r\nDiretor financeiro não pôde aprovar o pagamento solicitado\r\nDiretor Geral autorizando pagamento no valor de R$ 14999.0");
+//
+//	}
 
 //	@Test
 //	void testTratadorNulo() {
